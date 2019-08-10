@@ -1,0 +1,17 @@
+<% include partials/template/head %>
+<body>
+
+	<div class="container-fluid">
+		<div class="row">
+
+			<main>
+				<h1>Dashboard</h1>
+				<h5><%= user ? 'Hello, ' + user.name.firstName : null %></h5>
+				<a href="/accounts/auth/logout" class="btn btn-primary">Logout</a>
+			</main>
+
+		</div><!-- row -->
+	</div><!-- container -->
+
+	<% include partials/template/script %>
+</body>

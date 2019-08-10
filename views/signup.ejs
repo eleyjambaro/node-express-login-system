@@ -1,0 +1,85 @@
+<% include partials/template/head %>
+<body>
+	<div class="container-fluid" style="padding-top: 20px">
+		<div class="row">
+
+			<main class="col-sm-6 col-md-5 col-lg-4 mx-auto">
+				<h1><em>Sign Up</em></h1>
+				<% include ./partials/content/messages %>
+				<!-- sign up form-->
+				<form name="signup" action="/accounts/signup/email" method="POST">
+					<!-- first name input -->
+					<div class="form-group">
+						<input
+							class="form-control"
+							type="text"
+							name="first_name"
+							placeholder="first name"
+							value="<%= typeof first_name != 'undefined' ? first_name : '' %>"
+						/>    
+					</div>
+					<!-- last name input-->
+					<div class="form-group">
+						<input
+							class="form-control"
+							type="text"
+							name="last_name"
+							placeholder="last name"
+							value="<%= typeof last_name != 'undefined' ? last_name : '' %>"
+						/>
+					</div>
+					<!-- email input -->
+					<div class="form-group">
+						<input
+							class="form-control"
+							type="text"
+							name="email"
+							placeholder="email"
+							value="<%= typeof email != 'undefined' ? email : '' %>"
+						/>
+					</div>
+					<!-- username input -->
+					<div class="form-group">
+						<input
+							class="form-control"
+							type="text"
+							name="username"
+							placeholder="username"
+							value="<%= typeof username != 'undefined' ? username : '' %>"
+						/>
+					</div>
+					<!-- password input -->
+					<div class="form-group">
+						<input
+							class="form-control"
+							type="password"
+							name="password"
+							placeholder="provide a password"
+						/>
+					</div>
+					<!-- confirm password input -->
+					<div class="form-group">
+						<input
+							class="form-control"
+							type="password"
+							name="retype_password"
+							placeholder="confirm password"
+						/>
+					</div>
+					<!-- submit btn -->
+					<input class="btn btn-inline btn-primary" type="submit" name="submit" value="Submit">
+				</form>
+
+				<!-- signup options -->
+				<div>
+					<p>Already have an account? <a href="/accounts/auth/login"><b>Sign in</b></a></p>
+					<a class="btn btn-block btn-outline-success" href="/accounts/auth/google"><strong>Sign up with Google</strong></a>
+					<a class="btn btn-block btn-outline-primary" href="/accounts/auth/facebook"><strong>Sign up with Facebook</strong></a>
+				</div>
+			</main>
+				
+		</div><!-- row -->
+	</div><!-- container -->
+
+	<% include partials/template/script %>
+</body>

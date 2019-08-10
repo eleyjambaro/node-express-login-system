@@ -4,8 +4,14 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
+const flash = require('connect-flash');
+const keys = require('./config/keys');
+const passport = require('passport');
 
 const app = express();
+
+// require passport config
+require('./config/passport-setup');
 
 // connect to database
 mongoose.connect(keys.mongoDB.localURI, { useNewUrlParser: true });
@@ -28,6 +34,21 @@ app.use(cookieSession({
   maxAge: 24 * 60 * 60 * 1000,
   keys: [keys.session.cookieKey]
 }));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
+// global vars
+app.use((req, res, next) => {
+  res.locals.loginErrorMessage = req.flash('loginErrorMessage');
+  res.locals.user = req.user ? req.user : null;
+  next();
+});
+
+// setup routes
+app.use(require('./routes/index'));
+app.use('/accounts/signup', require('./routes/signup'));
+app.use('/accounts/auth', require('./routes/auth'));
 
 // error handler
 app.use((req, res, next) => {
