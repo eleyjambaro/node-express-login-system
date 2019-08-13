@@ -21,7 +21,13 @@ router.get('/', checkUserAuth({
  * @access Public
  */
 router.post('/email', (req, res, next) => {
-  const { first_name, last_name, email, username, password, retype_password } = req.body;
+  const {
+    first_name,
+    last_name, email,
+    username,
+    password,
+    retype_password } = req.body;
+
   let errors = [];
 
   // check required fields
@@ -37,6 +43,12 @@ router.post('/email', (req, res, next) => {
   // check password length
 	if (password.length < 6) {
 		errors.push({ msg: 'Password should be at least 6 characters' });
+  }
+
+  const isEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  if (!isEmail.test(email)) {
+    errors.push({ msg: 'Invalid email'});
   }
     
   // check if there's an error
