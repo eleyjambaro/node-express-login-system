@@ -31,7 +31,6 @@ router.post('/login', passport.authenticate('local', {
  * @desc Auth using Google+ - display Google+ consent screen on the browser
  * @access Public
  */
-// 
 router.get('/google', checkUserAuth({
   needLogin: false,
   pageRedirect: '/'
@@ -42,10 +41,31 @@ router.get('/google', checkUserAuth({
  * @desc Setup google callback URL
  * @access Public
  */
-// 
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
   res.redirect('/');
 });
+
+/**
+ * @route GET /accounts/auth/facebook
+ * @desc Auth using Facebook - display Facebook consent screen on the browser
+ * @access Public
+ */
+router.get('/facebook', checkUserAuth({
+  needLogin: false,
+  pageRedirect: '/'
+}), passport.authenticate('facebook'));
+
+/**
+ * @route GET /accounts/auth/facebook/redirect
+ * @desc Setup facebook callback URL
+ * @access Public
+ */
+router.get('/facebook/redirect',
+  passport.authenticate('facebook', { failureRedirect: '/accounts/auth/login' }),
+  (req, res) => {
+    res.redirect('/');
+  }
+);
 
 /**
  * @route GET /accounts/auth/logout

@@ -31,18 +31,18 @@ router.post('/email', (req, res, next) => {
   let errors = [];
 
   // check required fields
-	if (!first_name || !last_name || !email || !username || !password || !retype_password) {
-		errors.push({ msg: 'Please fill in all fields' });
-	}
+  if (!first_name || !last_name || !email || !username || !password || !retype_password) {
+    errors.push({ msg: 'Please fill in all fields' });
+  }
 
   // check retyped password if match
-	if (password !== retype_password) {
-		errors.push({ msg: 'Passwords do not match' });
+  if (password !== retype_password) {
+    errors.push({ msg: 'Passwords do not match' });
   }
     
   // check password length
-	if (password.length < 6) {
-		errors.push({ msg: 'Password should be at least 6 characters' });
+  if (password.length < 6) {
+    errors.push({ msg: 'Password should be at least 6 characters' });
   }
 
   const isEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -53,13 +53,13 @@ router.post('/email', (req, res, next) => {
     
   // check if there's an error
   if (errors.length > 0) {
-	  return res.render('signup', {
-			errors,
+    return res.render('signup', {
+      errors,
       first_name,
       last_name,
       email,
       username
-		});
+    });
   }
   
   // if zero error then check if email already exists

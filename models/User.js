@@ -17,6 +17,14 @@ const userSchema = new Schema({
     type: String,
     unique: true
   },
+  googleID: {
+    type: String,
+    default: ''
+  },
+  facebookID: {
+    type: String,
+    default: ''
+  },
   username: {
     type: String,
     unique: true
