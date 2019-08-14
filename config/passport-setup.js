@@ -49,9 +49,13 @@ passport.use(
 					avatar_url : profile._json.picture,
 					'name.firstName': profile._json.given_name,
 					'name.lastName': profile._json.family_name,
+					email: profile._json.email
 				})
 				.then(newUser => {
 					done(null, newUser);
+				})
+				.catch(error => {
+					done(error);
 				});
 			}
 		});  
