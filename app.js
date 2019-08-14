@@ -14,7 +14,7 @@ const app = express();
 require('./config/passport-setup');
 
 // connect to database
-mongoose.connect(keys.mongoDB.localURI, { useNewUrlParser: true });
+mongoose.connect(keys.mongoDB.cloudURI, { useNewUrlParser: true });
 mongoose.connection.once('open', () => {
   console.log('Connection to database has been successful!');
 }).on('error', error => {
