@@ -35,7 +35,7 @@ router.post('/login', passport.authenticate('local', {
 router.get('/google', checkUserAuth({
   needLogin: false,
   pageRedirect: '/'
-}), passport.authenticate('google', { scope: ['profile'] }));
+}), passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 /**
  * @route GET /accounts/auth/google/redirect
