@@ -15,7 +15,6 @@ const userSchema = new Schema({
   },
   email: {
     type: String,
-    required: true,
     unique: true
   },
   username: {
@@ -23,8 +22,7 @@ const userSchema = new Schema({
     unique: true
   },
   password: {
-    type: String,
-    required: true
+    type: String
   },
   signupDate: {
     type: Date,
